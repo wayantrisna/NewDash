@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Produk</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    h1 { color: #333; }
+    .product { margin-bottom: 10px; padding: 10px; border: 1px solid #ccc; }
+  </style>
+</head>
+<body>
+  <h1>Daftar Produk</h1>
+  <div id="product-list">Loading...</div>
+
+  <script>
+    fetch("http://localhost:8000/api/products")
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById("product-list");
+        container.innerHTML = ""; // kosongkan teks "Loading..."
+
+        data.forEach(product => {
+          const div = document.createElement("div");
+          div.className = "product";
+          div.innerHTML = `<strong>${product.name}</strong><br>${product.description}`;
+          container.appendChild(div);
+        });
+      })
+      .catch(error => {
+        document.getElementById("product-list").innerText = "Gagal mengambil data.";
+        console.error("Error:", error);
+      });
+  </script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+.author-priview-container {
+  padding: 20px;
+  padding-left: 240px;
+}
+
+.author-priview-container h2 {
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+.author-stat-boxes {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.author-stat-card {
+  flex: 1;
+  min-width: 180px;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.author-stat-card h3 {
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+
+.author-stat-card p {
+  font-size: 20px;
+  color: #333;
+}
+
+.author-stat-card.blue {
+  border-left: 5px solid #3498db;
+}
+.author-stat-card.green {
+  border-left: 5px solid #2ecc71;
+}
+.author-stat-card.purple {
+  border-left: 5px solid #9b59b6;
+}
+.author-stat-card.orange {
+  border-left: 5px solid #e67e22;
+}
+
+.author-quick-actions {
+  margin-bottom: 30px;
+}
+
+.author-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.author-btn:hover {
+  background-color: #2563eb;
+}
+
+.author-latest-articles {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.author-latest-articles h3 {
+  margin-bottom: 15px;
+}
+
+.author-latest-articles ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.author-latest-articles li {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+
+.author-latest-articles li:last-child {
+  border-bottom: none;
+}
+
+.author-latest-articles img {
+  width: 50px;
+  height: 50px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.author-latest-articles h4 {
+  margin: 0;
+  font-size: 16px;
+  color: #2c3e50;
+}
+
+.author-latest-articles small {
+  display: block;
+  color: #888;
+  font-size: 12px;
+  margin-top: 4px;
+}

@@ -1,0 +1,77 @@
+.news-card {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  background-color: #ffffff !important; /* Pastikan latar belakang putih */
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin: 0 1rem;
+  text-decoration: none;
+  color: inherit;
+  gap: 16px;
+  height: auto;
+  min-height: 120px;
+  overflow: hidden;
+}
+
+.news-image {
+  width: 150px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.news-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.news-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  color: #111827;
+}
+
+.news-summary {
+  font-size: 0.95rem;
+  color: #444;
+  margin: 0 0 12px 0;
+}
+
+.news-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.8rem;
+}
+
+.news-time {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #6b7280;
+}
+
+.news-category {
+  padding: 4px 8px;
+  border-radius: 8px;
+  color: #000;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.news-link {
+  text-decoration: none;
+}
+
+.category-news-card.highlight {
+  background-color: #ffffff; /* Ubah warna latar belakang menjadi putih */
+  padding: 16px; /* Pastikan padding tetap konsisten */
+  border-radius: 12px; /* Jika ada border-radius, pastikan tetap ada */
+}

@@ -1,0 +1,81 @@
+.contentmanagement {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.show-all-button,
+.back-button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.show-all-button {
+  background-color: #0026ff;
+  color: white;
+}
+
+.show-all-button:hover {
+  background-color: #555;
+}
+
+.back-button {
+  background-color: #0026ff;
+  color: white;
+}
+
+.back-button:hover {
+  background-color: #333;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 10px;
+  border-bottom: 1px solid #cccccc;
+  border: 1px solid #000000; /* Border tebal di semua sisi */
+}
+
+th {
+  color: white;
+  background-color: #0026ff;
+}
+
+img {
+  border-radius: 4px;
+}
+
+.edit-button,
+.delete-button {
+  padding: 5px 10px;
+  margin-right: 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.edit-button {
+  background-color: #4caf50;
+  color: white;
+}
+
+.delete-button {
+  background-color: #f44336;
+  color: white;
+}

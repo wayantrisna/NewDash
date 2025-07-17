@@ -1,0 +1,61 @@
+/* styles/Dashboard.css */
+
+.dashboard-container {
+  padding: 20px;
+}
+
+.stats-grid {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.card {
+  flex: 1;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.card p {
+  color: #777;
+  margin-bottom: 8px;
+}
+
+.card h3 {
+  font-size: 24px;
+  color: #333;
+}
+
+.artikel-terbaru {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.artikel-item {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.artikel-item img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.artikel-item .status {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  background-color: #d1e7dd;
+  color: #0f5132;
+}

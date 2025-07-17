@@ -1,0 +1,81 @@
+.create-news-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #f1f5f9;
+}
+
+.create-news-container {
+  width: 100%;
+  max-width: 500px;
+  padding: 30px;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.create-news-title {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 32px;
+  color: #0f172a;
+}
+
+.create-news-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.create-news-form label {
+  font-weight: 500;
+}
+
+.create-news-form input,
+.create-news-form textarea {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+  background: white;
+  color: black;
+}
+
+.create-news-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.create-news-form input[type="date"] {
+  background: white;
+  color: black;
+}
+
+.create-news-form select {
+  padding: 10px; /* Tambahkan padding untuk ruang di dalam dropdown */
+  font-size: 1rem; /* Sesuaikan ukuran font */
+  border: 1px solid #ccc; /* Tambahkan border untuk tampilan yang lebih baik */
+  border-radius: 6px; /* Tambahkan sudut melengkung */
+  width: 100%; /* Sesuaikan lebar dropdown */
+  background: white; /* Ubah latar belakang menjadi putih */
+  color: black; /* Ubah warna teks menjadi hitam untuk kontras yang baik */
+  appearance: none; /* Hapus gaya default dropdown (optional) */
+}
+
+.create-news-form button {
+  background-color: #1e3a8a;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s ease-in-out;
+}
+
+.create-news-form button:hover {
+  background-color: #1e293b;
+}

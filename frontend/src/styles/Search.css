@@ -1,0 +1,91 @@
+.card-grid {
+  display: flex;
+  flex-wrap: wrap; /* Mengizinkan item untuk membungkus ke baris berikutnya */
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.news-card {
+  display: flex;
+  background: #1f2937; /* Warna latar belakang yang lebih gelap */
+  border-radius: 8px;
+  overflow: hidden;
+  text-decoration: none;
+  color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Bayangan yang lebih kuat */
+  width: calc(33.333% - 16px); /* Membuat 3 kolom */
+}
+
+.news-card img {
+  width: 140px;
+  height: 100px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.news-card .content {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.news-card .tag {
+  background: #3b82f6; /* Warna tag yang lebih cerah */
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 4px;
+}
+
+.news-card h4 {
+  margin: 4px 0;
+  font-size: 1rem;
+  color: #3b82f6; /* Warna judul */
+}
+
+.news-card p {
+  font-size: 0.9rem;
+  color: #d1d5db;
+  margin: 4px 0;
+}
+
+.news-card .meta {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 20px;
+}
+
+.pagination button {
+  border: none;
+  background: #3b82f6; /* Warna tombol pagination */
+  color: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  background: #1d4ed8; /* Warna tombol aktif */
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .news-card {
+    width: calc(50% - 16px); /* 2 kolom pada perangkat kecil */
+  }
+}
+
+@media (max-width: 480px) {
+  .news-card {
+    width: 100%; /* 1 kolom pada perangkat sangat kecil */
+  }
+}

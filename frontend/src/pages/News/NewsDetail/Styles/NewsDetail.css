@@ -1,0 +1,125 @@
+/* ------------------------
+    GLOBAL
+------------------------- */
+body {
+  background-color: #ffffff; /* Full putih */
+  color: #000000;
+  font-family: "Segoe UI", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* ------------------------
+    WRAPPER
+------------------------- */
+.page-container {
+  background-color: #ffffff; /* Pastikan wrapper putih */
+}
+
+.news-detail-wrapper {
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: #ffffff;
+}
+
+/* ------------------------
+    SECTIONS / BOXES
+------------------------- */
+.news-detail-section,
+.comment-section,
+.action-buttons,
+.comment-item,
+.reply-input {
+  background-color: #ffffff; /* Putih bersih */
+  border: 1px solid #dddddd; /* Border soft abu terang */
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06); /* Bayangan soft */
+}
+
+/* ------------------------
+    COMMENT SECTION
+------------------------- */
+.comment-section {
+  color: #000000;
+}
+
+.comment-input {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.comment-input textarea {
+  flex: 1;
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.comment-input button {
+  background-color: #00cc4b;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+/* ------------------------
+    COMMENT ITEM
+------------------------- */
+.comment-item {
+  margin-bottom: 1rem;
+}
+
+.comment-header {
+  display: flex;
+  align-items: center;
+}
+
+.profile-image {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.reply-button {
+  margin-top: 5px;
+  background-color: transparent;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+}
+
+/* ------------------------
+    REPLY INPUT
+------------------------- */
+.reply-input {
+  display: flex;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.reply-input input {
+  flex: 1;
+  padding: 0.4rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.reply-input button {
+  background-color: #00cc4b;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #ffffff;
+}

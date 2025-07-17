@@ -1,0 +1,269 @@
+/* === GENERAL LAYOUT === */
+.home-layout {
+  background: #fff;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 40px 20px;
+}
+
+/* === TRENDING === */
+.trending {
+  background: linear-gradient(90deg, #000000, #1877f2);
+  color: white;
+  padding: 40px 20px;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.trending-title {
+  color: #ffffff;
+  font-size: 1.8rem;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.trending-subtitle {
+  color: #fff;
+  margin-bottom: 30px;
+  font-size: 1rem;
+}
+
+.trending-grid {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.trending-card {
+  background: #fff;
+  color: #000;
+  border-radius: 12px;
+  padding: 20px;
+  width: 100%;
+  max-width: 340px;
+  text-align: left;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.trending-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.trending-card h4 {
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+.trending-card p {
+  font-size: 0.9rem;
+  margin: 10px 0;
+}
+
+.meta {
+  font-size: 0.8rem;
+  color: #ff0000;
+}
+
+/* === BERITA TERBARU === */
+.berita-terbaru h3 {
+  margin-bottom: 20px;
+}
+
+.terbaru-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.news-card-terbaru {
+  display: flex;
+  gap: 16px;
+  background: #ffffff;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease;
+}
+
+.news-card-terbaru:hover {
+  transform: translateY(-2px);
+}
+
+.news-image-wrap img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.news-info h4 {
+  color: #000;
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.news-info p {
+  margin: 4px 0;
+  font-size: 0.9rem;
+  color: #334155;
+}
+
+.news-info .meta {
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+/* === KATEGORI BERITA === */
+.kategori-berita {
+  background-color: #e2e8f0;
+  padding: 40px 20px;
+  border-radius: 12px;
+  margin-top: 40px;
+}
+
+.kategori-berita h3 {
+  color: #000;
+  margin-bottom: 20px;
+}
+
+.category-buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.category-button {
+  padding: 8px 16px;
+  background: #ffffff;
+  color: #000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.category-button.active {
+  background: #3b82f6;
+  color: #000;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.news-card {
+  background: #f9fafb;
+  border-radius: 10px;
+  overflow: hidden;
+  text-decoration: none;
+  color: black;
+}
+
+.news-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.news-card .content {
+  padding: 15px;
+}
+
+/* === TAG KATEGORI BERITA === */
+.tag {
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 6px;
+  color: white;
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+.tag.teknologi {
+  background: #9b59b6; /* Ungu */
+}
+
+.tag.olahraga {
+  background: #27ae60; /* Hijau */
+}
+
+.tag.umum {
+  background: #3498db; /* Biru Muda */
+}
+
+.tag.politik {
+  background: #c0392b; /* Merah Tua */
+}
+
+.tag.red {
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 6px;
+  color: #ff0000;
+}
+
+/* === BUTTONS === */
+.see-more,
+.load-more {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.see-more button,
+.load-more button {
+  padding: 10px 20px;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* Section Header */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  color: #000;
+}
+
+/* Tombol Biru dengan Panah → */
+.primary-button {
+  padding: 10px 20px;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.3s ease;
+  text-decoration: none;
+}
+
+.primary-button:hover {
+  color: #fff;
+  background-color: #2563eb;
+}

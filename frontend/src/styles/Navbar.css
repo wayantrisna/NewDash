@@ -1,0 +1,383 @@
+/* =====================
+   NAVBAR CONTAINER
+===================== */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #0f172a, #1e3a8a);
+  padding: 16px 24px;
+  border-bottom: 1px solid #e2e8f0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+/* =====================
+   NAVBAR LEFT (Logo)
+===================== */
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.logo-icon {
+  font-size: 1.5rem;
+  margin-right: 6px;
+}
+
+.logo-text {
+  font-size: 1.1rem;
+}
+
+/* =====================
+   NAVBAR RIGHT
+===================== */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.navbar-search {
+  position: relative;
+  width: 300px;
+  border-radius: 999px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-search input {
+  width: 100%;
+  height: 100%;
+  padding: 0 40px 0 16px;
+  border: none;
+  border-radius: 999px;
+  outline: none;
+  font-size: 0.95rem;
+  color: #1e293b;
+  background: transparent;
+}
+
+.search-icon-inside {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #1e293b;
+  font-size: 1.1rem;
+  pointer-events: none;
+}
+
+/* =====================
+   CREATE NEWS BUTTON
+===================== */
+.create-news-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.plus-icon {
+  font-size: 24px;
+  color: #ffffff;
+}
+
+/* =====================
+   HAMBURGER MENU + DROPDOWN
+===================== */
+.menu-wrapper {
+  position: relative;
+}
+
+.menu-toggle {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 120%;
+  right: 0;
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  min-width: 200px;
+  padding: 8px 0;
+}
+
+.dropdown-item {
+  display: block;
+  padding: 10px 16px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: background 0.2s ease;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: #334155;
+}
+
+/* =====================
+   USER DROPDOWN (Still Used)
+===================== */
+.dropdown-item.with-submenu {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.submenu-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dropdown-submenu {
+  display: flex;
+  flex-direction: column;
+  background-color: #1e293b;
+  border-left: 2px solid #334155;
+  margin: 0 0 8px 16px;
+}
+
+.dropdown-submenu a,
+.dropdown-submenu button {
+  padding: 8px 16px;
+  color: #ffffff;
+  text-decoration: none;
+  background: none;
+  border: none;
+  text-align: left;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.dropdown-submenu a:hover,
+.dropdown-submenu button:hover {
+  background-color: #334155;
+}
+
+/* =====================
+   LOGOUT
+===================== */
+.logout-button {
+  width: 100%;
+}
+
+/* =====================
+   RESPONSIVE
+===================== */
+@media screen and (max-width: 768px) {
+  .main-content-grid {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .feature-image {
+    height: 250px;
+  }
+
+  .feature-overlay {
+    padding: 0.8rem;
+  }
+
+  .feature-title {
+    font-size: 1.2rem;
+  }
+
+  .feature-summary {
+    font-size: 0.9rem;
+  }
+
+  .left-content {
+    gap: 1rem;
+  }
+
+  .latest-news-grid {
+    flex-direction: column;
+  }
+
+  .latest-news-card {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .trending-sidebar {
+    width: 100%;
+    padding: 1rem 0.5rem;
+    border-radius: 8px;
+  }
+
+  .trending-item {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .trending-thumb {
+    width: 60px;
+    height: 50px;
+  }
+
+  .trending-headline {
+    font-size: 0.9rem;
+  }
+
+  .trending-time {
+    font-size: 0.7rem;
+  }
+
+  .see-all-link {
+    text-align: center;
+    margin-top: 1rem;
+  }
+}
+
+/* === LOGOUT MODAL === */
+.logout-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(3px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.logout-modal {
+  background: #000;
+  color: #fff;
+  padding: 32px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* penting: center isi */
+  text-align: center; /* center teks */
+}
+
+.logout-icon {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+}
+
+.logout-modal h3 {
+  margin-bottom: 12px;
+}
+
+.logout-modal p {
+  font-size: 0.95rem;
+  color: #ccc;
+  margin-bottom: 24px;
+}
+
+.logout-actions {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.btn-logout {
+  background: #fff;
+  color: #000;
+  padding: 10px;
+  border-radius: 24px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-cancel {
+  background: transparent;
+  color: #fff;
+  border: 1px solid #444;
+  padding: 10px;
+  border-radius: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-cancel:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.navbar-search {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  padding: 0.3rem 0.6rem;
+  border-radius: 8px;
+  margin-right: 1rem;
+}
+
+.navbar-search input {
+  border: none;
+  outline: none;
+  padding: 0.4rem;
+  font-size: 14px;
+}
+
+.search-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding-left: 0.5rem;
+  color: #333;
+}
+
+.search-icon-inside {
+  font-size: 16px;
+}
+
+.admin-home-link {
+  margin-right: 12px;
+  color: #fff;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+}
+
+.admin-home-link:hover {
+  color: #ccc;
+}
+
+.admin-home-icon {
+  margin-right: 4px;
+}
+
+.navbar-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+}

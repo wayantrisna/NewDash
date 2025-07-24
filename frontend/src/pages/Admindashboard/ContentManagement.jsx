@@ -41,6 +41,9 @@ function ArticleManagement() {
     if (!selectedArticle) return;
 
     setIsDeleting(true);
+    setShowModal(false);
+    setIsLoading(true);
+
     try {
       const res = await fetch(
         `${config.API_BASE_URL}/api/admin/news/${selectedArticle.id}`,
@@ -50,16 +53,21 @@ function ArticleManagement() {
       if (res.ok) {
         await fetchArticles();
         setIsSuccess(true);
-        setTimeout(() => setIsSuccess(false), 2000);
+        setTimeout(() => {
+          setIsSuccess(false);
+          setIsLoading(false);
+          setIsDeleting(false);
+        }, 2000);
       } else {
-        alert("Gagal menghapus artikel");
+        console.error("Gagal menghapus artikel");
+        setIsLoading(false);
+        setIsDeleting(false);
       }
     } catch (err) {
       console.error("Gagal menghapus artikel:", err);
-      alert("Terjadi kesalahan saat menghapus artikel");
-    } finally {
+      setIsLoading(false);
       setIsDeleting(false);
-      setShowModal(false);
+    } finally {
       setSelectedArticle(null);
     }
   };

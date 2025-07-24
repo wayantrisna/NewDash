@@ -9,7 +9,8 @@ export default function CommentManagement() {
   const [selectedCommentId, setSelectedCommentId] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isDeleting, setIsDeleting] = useState(false);
-  const [successMessage, setSuccessMessage] = useState("");
+  const [showLoadingOverlay, setShowLoadingOverlay] = useState(false);
+  const [deletionMessage, setDeletionMessage] = useState("");
 
   useEffect(() => {
     fetchComments();
@@ -36,6 +37,9 @@ export default function CommentManagement() {
     if (!selectedCommentId) return;
 
     setIsDeleting(true);
+    setShowModal(false);
+    setShowLoadingOverlay(true);
+
     try {
       await axios.delete(
         `${config.API_BASE_URL}/api/comments/${selectedCommentId}`
@@ -43,13 +47,17 @@ export default function CommentManagement() {
       setComments((prev) =>
         prev.filter((comment) => comment.id !== selectedCommentId)
       );
-      setSuccessMessage("✅ Komentar berhasil dihapus.");
-      setTimeout(() => setSuccessMessage(""), 3000);
+      setDeletionMessage("✅ Komentar berhasil dihapus.");
+      setTimeout(() => {
+        setShowLoadingOverlay(false);
+        setDeletionMessage("");
+      }, 2000); // Overlay ditampilkan selama 2 detik
     } catch (error) {
       console.error("Gagal menghapus komentar:", error);
+      alert("❌ Terjadi kesalahan saat menghapus komentar.");
+      setShowLoadingOverlay(false);
     } finally {
       setIsDeleting(false);
-      setShowModal(false);
       setSelectedCommentId(null);
     }
   };
@@ -61,9 +69,13 @@ export default function CommentManagement() {
 
   return (
     <div className="comments-container">
-      {(isLoading || isDeleting) && (
+      {/* Overlay Loading + Pesan */}
+      {showLoadingOverlay && (
         <div className="overlay">
           <div className="spinner"></div>
+          {deletionMessage && (
+            <p className="success-message">{deletionMessage}</p>
+          )}
         </div>
       )}
 
@@ -74,11 +86,9 @@ export default function CommentManagement() {
         </button>
       </div>
 
-      {successMessage && (
-        <div className="success-message">{successMessage}</div>
-      )}
-
-      {!isLoading && (
+      {isLoading ? (
+        <p style={{ color: "#555" }}>⏳ Memuat komentar...</p>
+      ) : (
         <table className="comments-table">
           <thead>
             <tr>
@@ -126,6 +136,7 @@ export default function CommentManagement() {
         </table>
       )}
 
+      {/* MODAL KONFIRMASI */}
       {showModal && (
         <div className="modal-overlay">
           <div className="modal">

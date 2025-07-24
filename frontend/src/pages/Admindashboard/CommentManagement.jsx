@@ -44,10 +44,9 @@ export default function CommentManagement() {
         prev.filter((comment) => comment.id !== selectedCommentId)
       );
       setSuccessMessage("✅ Komentar berhasil dihapus.");
-      setTimeout(() => setSuccessMessage(""), 3000); // hilangkan notifikasi setelah 3 detik
+      setTimeout(() => setSuccessMessage(""), 3000);
     } catch (error) {
       console.error("Gagal menghapus komentar:", error);
-      alert("❌ Terjadi kesalahan saat menghapus komentar.");
     } finally {
       setIsDeleting(false);
       setShowModal(false);
@@ -62,6 +61,12 @@ export default function CommentManagement() {
 
   return (
     <div className="comments-container">
+      {(isLoading || isDeleting) && (
+        <div className="overlay">
+          <div className="spinner"></div>
+        </div>
+      )}
+
       <div className="header-actions">
         <h1>Manajemen Komentar</h1>
         <button onClick={() => window.history.back()} className="back-btn">
@@ -73,9 +78,7 @@ export default function CommentManagement() {
         <div className="success-message">{successMessage}</div>
       )}
 
-      {isLoading ? (
-        <p style={{ color: "#555" }}>⏳ Memuat komentar...</p>
-      ) : (
+      {!isLoading && (
         <table className="comments-table">
           <thead>
             <tr>
@@ -123,7 +126,6 @@ export default function CommentManagement() {
         </table>
       )}
 
-      {/* MODAL KONFIRMASI */}
       {showModal && (
         <div className="modal-overlay">
           <div className="modal">

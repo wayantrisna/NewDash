@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import ReportButton from "../../../components/ReportButton";
 import config from "../../../config";
 import "./Styles/ActionButton.css";
@@ -7,10 +8,20 @@ function ActionButtons({ newsId }) {
   const [isLiked, setIsLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
   const [isBookmarked, setIsBookmarked] = useState(false);
+  const navigate = useNavigate();
   const BASE_URL = `${config.API_BASE_URL}/api/interaction`;
 
   const user = JSON.parse(localStorage.getItem("user"));
   const userId = user?.id;
+
+  // 🧠 Utilitas: Cek login
+  const checkLogin = () => {
+    if (!userId) {
+      navigate("/login");
+      return false;
+    }
+    return true;
+  };
 
   useEffect(() => {
     if (!userId || !newsId) return;
@@ -44,9 +55,11 @@ function ActionButtons({ newsId }) {
 
     fetchStatus();
     fetchLikeCount();
-  }, [newsId, userId]);
+  }, [newsId, userId, BASE_URL]);
 
   const handleLike = async () => {
+    if (!checkLogin()) return;
+
     try {
       const endpoint = `${BASE_URL}/likes`;
       const method = isLiked ? "DELETE" : "POST";
@@ -66,6 +79,8 @@ function ActionButtons({ newsId }) {
   };
 
   const handleBookmark = async () => {
+    if (!checkLogin()) return;
+
     try {
       const endpoint = `${BASE_URL}/bookmarks`;
       const method = isBookmarked ? "DELETE" : "POST";
@@ -99,7 +114,12 @@ function ActionButtons({ newsId }) {
         {isBookmarked ? "🔖 Bookmarked" : "🔖 Bookmark"}
       </button>
 
-      <ReportButton userId={userId} targetType="news" targetId={newsId} />
+      <ReportButton
+        userId={userId}
+        targetType="news"
+        targetId={newsId}
+        onNotLoggedIn={() => navigate("/login")}
+      />
     </div>
   );
 }

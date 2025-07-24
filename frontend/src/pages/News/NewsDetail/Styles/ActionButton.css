@@ -1,18 +1,18 @@
 body {
-  background-color: #18191a; /* Warna latar belakang halaman */
-  color: #ffffff; /* Teks putih untuk seluruh halaman */
+  background-color: #18191a;
+  color: #ffffff;
 }
 
 .comment-section {
   margin-top: 2rem;
-  background: #242526; /* Warna gelap untuk bagian komentar */
+  background: #242526;
   padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .comment-section h3 {
-  color: #ffffff; /* Judul putih */
+  color: #ffffff;
   margin-bottom: 1rem;
 }
 
@@ -27,14 +27,14 @@ body {
   padding: 0.75rem;
   border-radius: 8px;
   border: 1px solid #ccc;
-  background-color: #3a3b3c; /* Warna gelap untuk textarea */
+  background-color: #3a3b3c;
   color: #ffffff;
   font-size: 14px;
   resize: vertical;
 }
 
 .comment-input button {
-  background-color: #00cc4b; /* Warna hijau untuk tombol */
+  background-color: #00cc4b;
   border: none;
   padding: 0.75rem 1.25rem;
   border-radius: 8px;
@@ -45,7 +45,7 @@ body {
 }
 
 .comment-input button:hover {
-  background-color: #00b43f; /* Warna saat hover */
+  background-color: #00b43f;
 }
 
 .comments-list {
@@ -53,7 +53,7 @@ body {
 }
 
 .comment-item {
-  background-color: #3a3b3c; /* Warna gelap untuk setiap komentar */
+  background-color: #3a3b3c;
   border-radius: 10px;
   padding: 1rem;
   margin-bottom: 1rem;
@@ -64,34 +64,36 @@ body {
   font-weight: bold;
   font-size: 14px;
   margin-right: 5px;
-  color: #00cc4b; /* Warna hijau untuk username */
+  color: #00cc4b;
 }
 
 .comment-text {
   font-size: 14px;
-  color: #ddd; /* Warna lebih terang untuk teks komentar */
+  color: #ddd;
 }
 
-.action-buttons.no-gap {
+/* ✅ Gaya seragam untuk semua tombol aksi (Like, Bookmark, Report) */
+.action-buttons {
   display: flex;
-  justify-content: flex-start; /* Biar ke kiri */
+  justify-content: flex-start;
   align-items: center;
-  gap: 0;
+  gap: 0.5rem;
   margin-top: 5px;
 }
 
-.action-buttons.no-gap button {
+.action-buttons button {
   color: #ffffff;
   border: 1px solid #ccc;
   padding: 5px 10px;
-  background-color: #3a3b3c; /* Warna gelap untuk tombol */
+  background-color: #3a3b3c;
   cursor: pointer;
   font-size: 14px;
-  border-radius: 0;
+  border-radius: 4px;
+  transition: background-color 0.3s;
 }
 
-.action-buttons.no-gap button:hover {
-  background-color: #444; /* Warna saat hover */
+.action-buttons button:hover {
+  background-color: #444;
 }
 
 .reply-input {
@@ -105,7 +107,7 @@ body {
   padding: 0.5rem;
   border-radius: 6px;
   border: 1px solid #ccc;
-  background-color: #3a3b3c; /* Warna gelap untuk input balasan */
+  background-color: #3a3b3c;
   color: #ffffff;
   font-size: 13px;
 }

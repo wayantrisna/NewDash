@@ -2,18 +2,18 @@ import React, { useState, useEffect } from "react";
 import { useReport } from "../pages/News/NewsDetail/hook/useReport";
 import "../styles/ReportButton.css";
 
-function ReportButton({ userId, targetType, targetId }) {
+function ReportButton({ userId, targetType, targetId, onNotLoggedIn }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedReason, setSelectedReason] = useState("");
   const [customNote, setCustomNote] = useState("");
 
-  const { report } = useReport(); // tidak passing userId di sini
+  const { report } = useReport();
 
   const reasonsList = [
     "Konten seksual",
-    "Konten kekerasan atau menjijikkan",
-    "Konten kebencian atau pelecehan",
-    "Pelecehan atau penindasan",
+    "Konten kekerasan",
+    "Konten kebencian",
+    "Pelecehan",
     "Lainnya",
   ];
 
@@ -26,7 +26,11 @@ function ReportButton({ userId, targetType, targetId }) {
 
   const handleSubmit = async () => {
     if (!userId) {
-      alert("Kamu harus login terlebih dahulu untuk melaporkan.");
+      if (onNotLoggedIn) {
+        onNotLoggedIn(); // navigate ke login
+      } else {
+        alert("Kamu harus login terlebih dahulu untuk melaporkan.");
+      }
       return;
     }
 

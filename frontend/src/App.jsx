@@ -8,7 +8,7 @@ import LoginPage from "./pages/Login/LoginPage";
 import SignUpPage from "./pages/Signup/SignUpPage";
 import Createberita from "./pages/Create/Createberita";
 import BookmarkPage from "./pages/Bookmark/BookmarkPage";
-import AllNews from "./pages/Home/component/Allnews";
+import AllNews from "./pages/Allnews";
 import Editprofile from "./pages/Editprofile";
 import Search from "./pages/Search";
 import AdminDashboard from "./pages/Admindashboard/AdminDashboard";

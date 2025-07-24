@@ -181,9 +181,6 @@ function Navbar() {
 
           {showMenu && (
             <div className="dropdown-menu">
-              <Link to="/trending" className="dropdown-item">
-                <FaFire style={{ marginRight: 8 }} /> Trending
-              </Link>
               <Link to="/bookmarks" className="dropdown-item">
                 <FaBookmark style={{ marginRight: 8 }} /> Tersimpan
               </Link>

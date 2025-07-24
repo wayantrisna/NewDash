@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
+import { Link, useNavigate } from "react-router-dom";
 import config from "../../config";
 import "./SignUp.css";
 
@@ -10,7 +10,8 @@ function Register() {
     password: "",
     confirmPassword: "",
   });
-  const navigate = useNavigate(); // Inisialisasi useNavigate
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,6 +29,8 @@ function Register() {
       return;
     }
 
+    setIsLoading(true);
+
     try {
       const response = await fetch(`${config.API_BASE_URL}/api/register`, {
         method: "POST",
@@ -41,17 +44,30 @@ function Register() {
 
       const data = await response.json();
       if (data.message) {
-        alert("Registrasi berhasil! Silakan login.");
-        navigate("/login"); // Redirect ke halaman login setelah registrasi berhasil
+        // Delay 2 detik agar terasa loading
+        setTimeout(() => {
+          alert("Registrasi berhasil! Silakan login.");
+          navigate("/login");
+        }, 2000);
+      } else {
+        alert("Registrasi gagal. Silakan coba lagi.");
+        setIsLoading(false);
       }
     } catch (error) {
       console.error("Error registrasi:", error);
       alert("Registrasi gagal. Silakan coba lagi.");
+      setIsLoading(false);
     }
   };
 
   return (
     <div className="register-container">
+      {isLoading && (
+        <div className="loading-overlay">
+          <div className="spinner"></div>
+        </div>
+      )}
+
       <form className="register-box" onSubmit={handleSubmit}>
         <h2>Create Account</h2>
 

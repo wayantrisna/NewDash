@@ -1,6 +1,6 @@
 .footer {
-  background-color: #000000; /* Latar belakang putih */
-  color: #ffffff; /* Warna teks gelap */
+  background-color: #000000; /* Latar belakang hitam */
+  color: #ffffff; /* Warna teks putih */
   padding: 20px;
 }
 
@@ -12,7 +12,9 @@
   flex-wrap: wrap;
 }
 
-.footer-info, .footer-links, .footer-social {
+.footer-info,
+.footer-links,
+.footer-social {
   flex: 1;
   margin: 10px;
   min-width: 200px;
@@ -28,7 +30,7 @@
 }
 
 .footer-links a {
-  color: #ffffff; /* Warna tautan gelap */
+  color: #ffffff; /* Warna tautan putih */
   text-decoration: none;
 }
 
@@ -42,17 +44,23 @@
 }
 
 .social-icons a {
-  color: #ffffff; /* Warna ikon sosial gelap */
+  color: #ffffff; /* Warna ikon sosial */
   margin: 0 10px;
   font-size: 20px;
 }
 
 .footer-bottom {
-  text-align: center; /* Rata tengah untuk bagian bawah */
+  text-align: center;
   margin-top: 20px;
   font-size: 14px;
 }
 
 .h3 {
-  color:#ffffff;
+  color: #ffffff;
+}
+
+/* ✅ Tambahan: styling untuk paragraf di dalam footer */
+.footer p {
+  margin-bottom: 1.5rem;
+  color: #ffffff;
 }

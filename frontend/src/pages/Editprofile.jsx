@@ -14,6 +14,8 @@ function Profile() {
   });
 
   const [isLoading, setIsLoading] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [updateSuccess, setUpdateSuccess] = useState(false);
   const [profileImagePreview, setProfileImagePreview] = useState("");
   const navigate = useNavigate();
 
@@ -65,6 +67,8 @@ function Profile() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setUpdateSuccess(false);
 
     const formData = new FormData();
     formData.append("username", userData.username);
@@ -77,6 +81,7 @@ function Profile() {
     const userId = localUser?.id;
     if (!userId) {
       alert("User ID tidak ditemukan, login ulang!");
+      setIsSubmitting(false);
       return;
     }
 
@@ -87,18 +92,21 @@ function Profile() {
         { headers: { "Content-Type": "multipart/form-data" } }
       );
 
-      alert("Profile updated successfully");
+      setUpdateSuccess(true);
 
-      if (role === "admin") {
-        navigate("/admin/dashboard");
-      } else if (role === "author") {
-        navigate("/author/dashboard");
-      } else {
-        navigate("/");
-      }
+      setTimeout(() => {
+        if (role === "admin") {
+          navigate("/admin/dashboard");
+        } else if (role === "author") {
+          navigate("/author/dashboard");
+        } else {
+          navigate("/");
+        }
+      }, 2000);
     } catch (error) {
       console.error("Error updating profile:", error);
       alert("Failed to update profile");
+      setIsSubmitting(false);
     }
   };
 
@@ -109,6 +117,18 @@ function Profile() {
       {role === "user" && <Navbar />}
 
       <div className="profile-page">
+        {/* Spinner overlay saat submit */}
+        {isSubmitting && (
+          <div className="overlay-loading">
+            <div className="spinner"></div>
+            <p style={{ marginTop: "1rem", color: "#fff", fontSize: "18px" }}>
+              {updateSuccess
+                ? "Profile updated successfully!"
+                : "Updating profile..."}
+            </p>
+          </div>
+        )}
+
         <div className="profile-container">
           {(role === "admin" || role === "author") && (
             <button
@@ -168,8 +188,12 @@ function Profile() {
               />
             </div>
 
-            <button type="submit" className="profile-submit-button">
-              Update Profile
+            <button
+              type="submit"
+              className="profile-submit-button"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Updating..." : "Update Profile"}
             </button>
           </form>
         </div>

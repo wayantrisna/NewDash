@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import config from "../../../config";
+import config from "../config";
 import "../styles/Allnews.css";
 
-import Navbar from "../../../components/Navbar";
-import Footer from "../../../components/Footer";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 function AllNews() {
   const [newsList, setNewsList] = useState([]);

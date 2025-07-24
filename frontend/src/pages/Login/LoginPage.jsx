@@ -8,6 +8,8 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,6 +22,9 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
+    setErrorMessage("");
+    const start = Date.now();
 
     try {
       const response = await fetch(`${config.API_BASE_URL}/api/login`, {
@@ -29,43 +34,51 @@ function Login() {
       });
 
       const data = await response.json();
+      const elapsed = Date.now() - start;
+      const delay = Math.max(0, 2000 - elapsed); // minimum 2 detik
 
-      if (data.token && data.user) {
-        // ✅ Simpan semua data user ke localStorage/sessionStorage
-        if (rememberMe) {
-          localStorage.setItem("token", data.token);
-          localStorage.setItem("user", JSON.stringify(data.user));
-          localStorage.setItem("email", data.user.email);
+      setTimeout(() => {
+        if (data.token && data.user) {
+          if (rememberMe) {
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("user", JSON.stringify(data.user));
+            localStorage.setItem("email", data.user.email);
+          } else {
+            sessionStorage.setItem("token", data.token);
+            sessionStorage.setItem("user", JSON.stringify(data.user));
+            localStorage.removeItem("email");
+          }
+
+          if (data.user.role === "admin") {
+            navigate("/admin/dashboard");
+          } else if (data.user.role === "author") {
+            navigate("/author/dashboard");
+          } else {
+            navigate("/");
+          }
+
+          window.location.reload();
         } else {
-          sessionStorage.setItem("token", data.token);
-          sessionStorage.setItem("user", JSON.stringify(data.user));
-          localStorage.removeItem("email");
+          setErrorMessage("Email atau password salah.");
         }
 
-        alert("Login Berhasil");
-
-        // ✅ Arahkan sesuai role
-        if (data.user.role === "admin") {
-          navigate("/admin/dashboard");
-        } else if (data.user.role === "author") {
-          navigate("/author/dashboard");
-        } else {
-          navigate("/");
-        }
-
-        // Optional: reload agar Navbar update state
-        window.location.reload();
-      } else {
-        alert("Login Gagal: Email atau password salah");
-      }
+        setIsLoading(false);
+      }, delay);
     } catch (error) {
       console.error("Login error:", error);
-      alert("Terjadi kesalahan saat login");
+      setErrorMessage("Terjadi kesalahan saat login.");
+      setIsLoading(false);
     }
   };
 
   return (
     <div className="login-container">
+      {isLoading && (
+        <div className="loading-overlay">
+          <div className="spinner"></div>
+        </div>
+      )}
+
       <form className="login-card" onSubmit={handleSubmit}>
         <div className="login-icon-wrapper">
           <FaUserCircle size={64} className="login-icon" />
@@ -111,9 +124,11 @@ function Login() {
           </Link>
         </div>
 
-        <button type="submit" className="login-btn">
+        <button type="submit" className="login-btn" disabled={isLoading}>
           Login
         </button>
+
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
 
         <p className="signup-text">
           Belum punya akun? <Link to="/SignUp">Daftar</Link>

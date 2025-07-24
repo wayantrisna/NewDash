@@ -156,3 +156,32 @@ input:-webkit-autofill {
 .signup-text a:hover {
   text-decoration: underline;
 }
+
+/* ✅ Spinner loading di tengah layar saat Sign Up */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.spinner {
+  border: 5px solid #d1d5db;
+  border-top: 5px solid #2563eb;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { nestComments } from "./Hook/nestComment";
 import config from "../../../config";
@@ -13,6 +14,8 @@ function CommentSection({ newsId }) {
   const [likes, setLikes] = useState({});
   const [repliesEnabled, setRepliesEnabled] = useState({});
 
+  const navigate = useNavigate();
+
   const sessionUser = JSON.parse(sessionStorage.getItem("user"));
   const localUser = JSON.parse(localStorage.getItem("user"));
   const userId = sessionUser?.id || localUser?.id;
@@ -22,7 +25,6 @@ function CommentSection({ newsId }) {
       const res = await axios.get(
         `${config.API_BASE_URL}/api/comments/news/${newsId}`
       );
-
       const nested = nestComments(res.data);
       setComments(nested);
     } catch (err) {
@@ -35,7 +37,13 @@ function CommentSection({ newsId }) {
   }, [fetchComments]);
 
   const handleCommentSubmit = async () => {
-    if (!commentText.trim() || !userId) return;
+    if (!userId) {
+      navigate("/login");
+      return;
+    }
+
+    if (!commentText.trim()) return;
+
     try {
       await axios.post(`${config.API_BASE_URL}/api/comments`, {
         userId,
@@ -45,10 +53,7 @@ function CommentSection({ newsId }) {
       setCommentText("");
       fetchComments();
     } catch (err) {
-      console.error(
-        "Gagal mengirim komentar:",
-        err.response?.data || err.message
-      );
+      console.error("Gagal mengirim komentar:", err);
     }
   };
 
@@ -66,6 +71,12 @@ function CommentSection({ newsId }) {
 
   const handleReplySubmit = async (parentId) => {
     const replyText = replyInputs[parentId];
+
+    if (!userId) {
+      navigate("/login");
+      return;
+    }
+
     if (!replyText?.trim()) return;
 
     try {

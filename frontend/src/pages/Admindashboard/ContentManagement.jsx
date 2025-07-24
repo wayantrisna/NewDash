@@ -85,6 +85,7 @@ function ArticleManagement() {
         <p style={{ color: "#555" }}>⏳ Sedang memuat artikel...</p>
       ) : (
         <table>
+          .
           <thead>
             <tr>
               <th>Judul</th>

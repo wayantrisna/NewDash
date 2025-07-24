@@ -26,7 +26,6 @@ Thumbs.db
 .idea/
 
 # Uploads / static files (if any)
-uploads/
 public/uploads/
 
 # Build artifacts

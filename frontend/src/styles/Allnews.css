@@ -153,15 +153,19 @@ html {
   text-decoration: none;
 }
 
+.politik {
+  background-color: #2f80ed;
+}
+
 .teknologi {
-  background-color: #1877f2;
+  background-color: #3b82f6;
 }
 
 .olahraga {
-  background-color: #f2994a
+  background-color: #10b981;
 }
 
 .umum {
-  background-color: #ffdd00;
+  background-color: #6366f1;
   color: black;
 }

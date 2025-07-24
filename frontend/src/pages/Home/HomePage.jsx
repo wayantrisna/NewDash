@@ -13,6 +13,11 @@ function Home() {
   const [searchKeyword, setSearchKeyword] = useState("");
   const [searchInput, setSearchInput] = useState("");
 
+  // Fungsi untuk normalisasi nama kategori
+  const getCategoryClass = (category) => {
+    return category?.toLowerCase().trim();
+  };
+
   useEffect(() => {
     fetch(`${config.API_BASE_URL}/api/interaction/news/all`)
       .then((res) => res.json())
@@ -122,9 +127,7 @@ function Home() {
                   <img src={item.image} alt={item.title} />
                 </div>
                 <div className="news-info">
-                  <span
-                    className={`tag ${item.category?.toLowerCase().trim()}`}
-                  >
+                  <span className={`tag ${getCategoryClass(item.category)}`}>
                     {item.category}
                   </span>
                   <h4>{item.title}</h4>
@@ -178,9 +181,7 @@ function Home() {
               <Link to={`/news/${item.id}`} className="news-card" key={item.id}>
                 <img src={item.image} alt={item.title} />
                 <div className="content">
-                  <span
-                    className={`tag ${item.category?.toLowerCase().trim()}`}
-                  >
+                  <span className={`tag ${getCategoryClass(item.category)}`}>
                     {item.category}
                   </span>
                   <h4>{item.title}</h4>

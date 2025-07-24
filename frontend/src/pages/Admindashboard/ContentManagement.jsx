@@ -10,6 +10,7 @@ function ArticleManagement() {
   const [selectedArticle, setSelectedArticle] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const navigate = useNavigate();
 
@@ -48,7 +49,8 @@ function ArticleManagement() {
 
       if (res.ok) {
         await fetchArticles();
-        alert("Artikel berhasil dihapus");
+        setIsSuccess(true);
+        setTimeout(() => setIsSuccess(false), 2000);
       } else {
         alert("Gagal menghapus artikel");
       }
@@ -64,6 +66,15 @@ function ArticleManagement() {
 
   return (
     <div className="contentmanagement">
+      {isLoading && (
+        <div className="overlay">
+          <div className="spinner"></div>
+          {isSuccess && (
+            <p className="success-message">Artikel berhasil dihapus!</p>
+          )}
+        </div>
+      )}
+
       <h2 className="page-title">Manajemen Artikel</h2>
 
       <div className="top-bar">
@@ -81,11 +92,8 @@ function ArticleManagement() {
         </button>
       </div>
 
-      {isLoading ? (
-        <p style={{ color: "#555" }}>⏳ Sedang memuat artikel...</p>
-      ) : (
+      {!isLoading && (
         <table>
-          .
           <thead>
             <tr>
               <th>Judul</th>

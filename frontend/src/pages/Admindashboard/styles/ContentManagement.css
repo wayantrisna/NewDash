@@ -80,7 +80,7 @@ img {
   color: white;
 }
 
-/* Overlay untuk loading */
+/* Fullscreen overlay saat loading */
 .overlay {
   position: fixed;
   top: 0;
@@ -90,11 +90,11 @@ img {
   background-color: rgba(0, 0, 0, 0.4);
   z-index: 999;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-/* Spinner animasi bulat */
 .spinner {
   width: 60px;
   height: 60px;
@@ -102,6 +102,16 @@ img {
   border-top: 6px solid #0026ff;
   border-radius: 50%;
   animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+.success-message {
+  color: #fff;
+  background-color: green;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  animation: fadeIn 0.5s ease-in;
 }
 
 @keyframes spin {
@@ -110,5 +120,14 @@ img {
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

@@ -10,9 +10,9 @@ function Createberita() {
     imageUrl: "",
     category: "",
   });
-
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -33,23 +33,21 @@ function Createberita() {
         body: JSON.stringify(formData),
       });
 
-      if (!response.ok) throw new Error("Gagal menyimpan berita");
+      if (!response.ok) {
+        throw new Error("Gagal menyimpan berita");
+      }
+
       await response.json();
 
-      // Simulasi loading 2 detik
+      setIsSuccess(true);
       setTimeout(() => {
         setIsLoading(false);
-        setIsSuccess(true);
-
-        // Setelah 2 detik sukses, redirect
-        setTimeout(() => {
-          navigate("/");
-        }, 2000);
+        navigate("/");
       }, 2000);
     } catch (error) {
       console.error("❌ Error:", error);
-      alert("Gagal menyimpan berita.");
       setIsLoading(false);
+      alert("Gagal menyimpan berita.");
     }
   };
 
@@ -57,14 +55,6 @@ function Createberita() {
     <div className="create-news-wrapper">
       <div className="create-news-container">
         <h2 className="create-news-title">Create Berita</h2>
-
-        {isLoading && <p style={{ color: "blue" }}>⏳ Menyimpan berita...</p>}
-        {isSuccess && (
-          <p style={{ color: "green", marginTop: "1rem" }}>
-            ✅ Berita berhasil disimpan!
-          </p>
-        )}
-
         <form onSubmit={handleSubmit} className="create-news-form">
           <label>Title</label>
           <input
@@ -74,7 +64,6 @@ function Createberita() {
             value={formData.title}
             onChange={handleChange}
             required
-            disabled={isLoading}
           />
 
           <label>Description</label>
@@ -84,7 +73,6 @@ function Createberita() {
             value={formData.description}
             onChange={handleChange}
             required
-            disabled={isLoading}
           ></textarea>
 
           <label>Image URL</label>
@@ -94,7 +82,6 @@ function Createberita() {
             placeholder="Enter image URL"
             value={formData.imageUrl}
             onChange={handleChange}
-            disabled={isLoading}
           />
 
           <label>Kategori</label>
@@ -103,7 +90,6 @@ function Createberita() {
             value={formData.category}
             onChange={handleChange}
             required
-            disabled={isLoading}
           >
             <option value="">Pilih Kategori</option>
             <option value="Politik">Politik</option>
@@ -112,9 +98,18 @@ function Createberita() {
             <option value="Umum">Umum</option>
           </select>
 
-          <button type="submit" disabled={isLoading || isSuccess}>
-            {isLoading ? "Loading..." : "Submit News"}
+          <button type="submit" disabled={isLoading}>
+            {isLoading ? "Updating..." : "Submit News"}
           </button>
+
+          {isLoading && (
+            <div className="overlay">
+              <div className="spinner"></div>
+              {isSuccess && (
+                <p className="success-message">Berita berhasil disimpan!</p>
+              )}
+            </div>
+          )}
         </form>
       </div>
     </div>

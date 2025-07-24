@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useReport } from "../pages/News/NewsDetail/hook/useReport";
+import { useReport } from "../pages/News/NewsDetail/Hook/useReport";
 import "../styles/ReportButton.css";
 
 function ReportButton({ userId, targetType, targetId, onNotLoggedIn }) {

@@ -10,9 +10,9 @@ function Createberita() {
     imageUrl: "",
     category: "",
   });
+
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -38,21 +38,31 @@ function Createberita() {
       }
 
       await response.json();
-
       setIsSuccess(true);
+
+      // Tunda sebentar untuk menampilkan pesan sukses
       setTimeout(() => {
         setIsLoading(false);
         navigate("/");
-      }, 2000);
+      }, 1500);
     } catch (error) {
       console.error("❌ Error:", error);
-      setIsLoading(false);
       alert("Gagal menyimpan berita.");
+      setIsLoading(false);
     }
   };
 
   return (
     <div className="create-news-wrapper">
+      {isLoading && (
+        <div className="overlay">
+          <div className="spinner"></div>
+          {isSuccess && (
+            <p className="success-message">Berita berhasil disimpan!</p>
+          )}
+        </div>
+      )}
+
       <div className="create-news-container">
         <h2 className="create-news-title">Create Berita</h2>
         <form onSubmit={handleSubmit} className="create-news-form">
@@ -99,17 +109,8 @@ function Createberita() {
           </select>
 
           <button type="submit" disabled={isLoading}>
-            {isLoading ? "Updating..." : "Submit News"}
+            {isLoading ? "Menyimpan..." : "Submit News"}
           </button>
-
-          {isLoading && (
-            <div className="overlay">
-              <div className="spinner"></div>
-              {isSuccess && (
-                <p className="success-message">Berita berhasil disimpan!</p>
-              )}
-            </div>
-          )}
         </form>
       </div>
     </div>

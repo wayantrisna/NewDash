@@ -79,3 +79,8 @@
 .create-news-form button:hover {
   background-color: #1e293b;
 }
+
+.create-news-container p {
+  font-size: 14px;
+  margin-bottom: 10px;
+}

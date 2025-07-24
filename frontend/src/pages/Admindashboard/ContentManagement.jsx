@@ -8,7 +8,7 @@ function ArticleManagement() {
   const [showAll, setShowAll] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [selectedArticle, setSelectedArticle] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isFetching, setIsFetching] = useState(false); // loading saat buka halaman
   const [isDeleting, setIsDeleting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -19,7 +19,7 @@ function ArticleManagement() {
   }, []);
 
   const fetchArticles = async () => {
-    setIsLoading(true);
+    setIsFetching(true);
     try {
       const res = await fetch(`${config.API_BASE_URL}/api/admin/news/all`);
       if (!res.ok) throw new Error("Gagal mengambil data artikel");
@@ -28,7 +28,7 @@ function ArticleManagement() {
     } catch (err) {
       console.error("Gagal fetch artikel:", err);
     } finally {
-      setIsLoading(false);
+      setIsFetching(false);
     }
   };
 
@@ -42,7 +42,6 @@ function ArticleManagement() {
 
     setIsDeleting(true);
     setShowModal(false);
-    setIsLoading(true);
 
     try {
       const res = await fetch(
@@ -55,17 +54,14 @@ function ArticleManagement() {
         setIsSuccess(true);
         setTimeout(() => {
           setIsSuccess(false);
-          setIsLoading(false);
           setIsDeleting(false);
         }, 2000);
       } else {
         console.error("Gagal menghapus artikel");
-        setIsLoading(false);
         setIsDeleting(false);
       }
     } catch (err) {
       console.error("Gagal menghapus artikel:", err);
-      setIsLoading(false);
       setIsDeleting(false);
     } finally {
       setSelectedArticle(null);
@@ -74,7 +70,7 @@ function ArticleManagement() {
 
   return (
     <div className="contentmanagement">
-      {isLoading && (
+      {(isFetching || isDeleting || isSuccess) && (
         <div className="overlay">
           <div className="spinner"></div>
           {isSuccess && (
@@ -100,7 +96,7 @@ function ArticleManagement() {
         </button>
       </div>
 
-      {!isLoading && (
+      {!isFetching && (
         <table>
           <thead>
             <tr>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import config from "../../config";
-import "../Home/Home.css";
+import "./Home.css";
 
 function Home() {
   const [newsList, setNewsList] = useState([]);

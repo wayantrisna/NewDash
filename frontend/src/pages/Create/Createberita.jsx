@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import config from "../../config";
-import "../Create/Createberita.css";
+import "./Createberita.css";
 
 function Createberita() {
   const [formData, setFormData] = useState({

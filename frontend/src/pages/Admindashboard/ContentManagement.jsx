@@ -8,6 +8,9 @@ function ArticleManagement() {
   const [showAll, setShowAll] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [selectedArticle, setSelectedArticle] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -15,6 +18,7 @@ function ArticleManagement() {
   }, []);
 
   const fetchArticles = async () => {
+    setIsLoading(true);
     try {
       const res = await fetch(`${config.API_BASE_URL}/api/admin/news/all`);
       if (!res.ok) throw new Error("Gagal mengambil data artikel");
@@ -22,6 +26,8 @@ function ArticleManagement() {
       setArticles(data);
     } catch (err) {
       console.error("Gagal fetch artikel:", err);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -31,6 +37,9 @@ function ArticleManagement() {
   };
 
   const handleDelete = async () => {
+    if (!selectedArticle) return;
+
+    setIsDeleting(true);
     try {
       const res = await fetch(
         `${config.API_BASE_URL}/api/admin/news/${selectedArticle.id}`,
@@ -38,7 +47,7 @@ function ArticleManagement() {
       );
 
       if (res.ok) {
-        fetchArticles();
+        await fetchArticles();
         alert("Artikel berhasil dihapus");
       } else {
         alert("Gagal menghapus artikel");
@@ -47,6 +56,7 @@ function ArticleManagement() {
       console.error("Gagal menghapus artikel:", err);
       alert("Terjadi kesalahan saat menghapus artikel");
     } finally {
+      setIsDeleting(false);
       setShowModal(false);
       setSelectedArticle(null);
     }
@@ -71,45 +81,52 @@ function ArticleManagement() {
         </button>
       </div>
 
-      <table>
-        <thead>
-          <tr>
-            <th>Judul</th>
-            <th>Kategori</th>
-            <th>Gambar</th>
-            <th>Aksi</th>
-          </tr>
-        </thead>
-        <tbody>
-          {Array.isArray(articles) && articles.length > 0 ? (
-            (showAll ? articles : articles.slice(0, 10)).map((item) => (
-              <tr key={item.id || item.title}>
-                <td>{item.title || "-"}</td>
-                <td>{item.category || "-"}</td>
-                <td>
-                  {item.image ? (
-                    <img src={item.image} alt="thumbnail" width={50} />
-                  ) : (
-                    "-"
-                  )}
-                </td>
-                <td>
-                  <button
-                    className="delete-button"
-                    onClick={() => confirmDelete(item)}
-                  >
-                    Hapus
-                  </button>
-                </td>
-              </tr>
-            ))
-          ) : (
+      {isLoading ? (
+        <p style={{ color: "#555" }}>⏳ Sedang memuat artikel...</p>
+      ) : (
+        <table>
+          <thead>
             <tr>
-              <td colSpan="4">Tidak ada data</td>
+              <th>Judul</th>
+              <th>Kategori</th>
+              <th>Gambar</th>
+              <th>Aksi</th>
             </tr>
-          )}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {Array.isArray(articles) && articles.length > 0 ? (
+              (showAll ? articles : articles.slice(0, 10)).map((item) => (
+                <tr key={item.id || item.title}>
+                  <td>{item.title || "-"}</td>
+                  <td>{item.category || "-"}</td>
+                  <td>
+                    {item.image ? (
+                      <img src={item.image} alt="thumbnail" width={50} />
+                    ) : (
+                      "-"
+                    )}
+                  </td>
+                  <td>
+                    <button
+                      className="delete-button"
+                      onClick={() => confirmDelete(item)}
+                      disabled={isDeleting}
+                    >
+                      {isDeleting && selectedArticle?.id === item.id
+                        ? "Menghapus..."
+                        : "Hapus"}
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="4">Tidak ada data</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      )}
 
       {showModal && selectedArticle && (
         <div className="modal-overlay">
@@ -120,12 +137,17 @@ function ArticleManagement() {
               <strong>{selectedArticle.title}</strong>?
             </p>
             <div className="modal-actions">
-              <button onClick={handleDelete} className="confirm-button">
-                Ya, Hapus
+              <button
+                onClick={handleDelete}
+                className="confirm-button"
+                disabled={isDeleting}
+              >
+                {isDeleting ? "Menghapus..." : "Ya, Hapus"}
               </button>
               <button
                 onClick={() => setShowModal(false)}
                 className="cancel-button"
+                disabled={isDeleting}
               >
                 Batal
               </button>

@@ -118,3 +118,15 @@
 .cancel-btn:hover {
   background-color: #bbb;
 }
+
+/* styles/CommentManagement.css */
+
+.success-message {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  padding: 0.75rem 1rem;
+  margin: 1rem 0;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}

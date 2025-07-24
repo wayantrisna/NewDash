@@ -8,9 +8,10 @@ function Createberita() {
     title: "",
     description: "",
     imageUrl: "",
-    category: "", // Tambahkan kategori di sini
+    category: "",
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -19,6 +20,7 @@ function Createberita() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true); // tampilkan loading
 
     try {
       const response = await fetch(`${config.API_BASE_URL}/api/news`, {
@@ -34,10 +36,15 @@ function Createberita() {
       }
 
       await response.json();
-      alert("✅ Berita berhasil disimpan!");
-      navigate("/");
+
+      // Tampilkan loading selama 2 detik sebelum redirect
+      setTimeout(() => {
+        setIsSubmitting(false);
+        navigate("/");
+      }, 2000);
     } catch (error) {
       console.error("❌ Error:", error);
+      setIsSubmitting(false);
       alert("Gagal menyimpan berita.");
     }
   };
@@ -46,6 +53,10 @@ function Createberita() {
     <div className="create-news-wrapper">
       <div className="create-news-container">
         <h2 className="create-news-title">Create Berita</h2>
+        {isSubmitting && (
+          <p style={{ color: "green" }}>⏳ Menyimpan berita...</p>
+        )}
+
         <form onSubmit={handleSubmit} className="create-news-form">
           <label>Title</label>
           <input
@@ -55,6 +66,7 @@ function Createberita() {
             value={formData.title}
             onChange={handleChange}
             required
+            disabled={isSubmitting}
           />
 
           <label>Description</label>
@@ -64,6 +76,7 @@ function Createberita() {
             value={formData.description}
             onChange={handleChange}
             required
+            disabled={isSubmitting}
           ></textarea>
 
           <label>Image URL</label>
@@ -73,6 +86,7 @@ function Createberita() {
             placeholder="Enter image URL"
             value={formData.imageUrl}
             onChange={handleChange}
+            disabled={isSubmitting}
           />
 
           <label>Kategori</label>
@@ -81,6 +95,7 @@ function Createberita() {
             value={formData.category}
             onChange={handleChange}
             required
+            disabled={isSubmitting}
           >
             <option value="">Pilih Kategori</option>
             <option value="Politik">Politik</option>
@@ -89,7 +104,9 @@ function Createberita() {
             <option value="Umum">Umum</option>
           </select>
 
-          <button type="submit">Submit News</button>
+          <button type="submit" disabled={isSubmitting}>
+            {isSubmitting ? "Loading..." : "Submit News"}
+          </button>
         </form>
       </div>
     </div>

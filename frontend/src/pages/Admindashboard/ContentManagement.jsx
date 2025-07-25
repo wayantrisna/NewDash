@@ -152,7 +152,7 @@ function ArticleManagement() {
             <div className="modal-actions">
               <button
                 onClick={handleDelete}
-                className="confirm-button"
+                className="delete-confirm-button"
                 disabled={isDeleting}
               >
                 {isDeleting ? "Menghapus..." : "Ya, Hapus"}

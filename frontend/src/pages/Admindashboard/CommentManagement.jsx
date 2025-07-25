@@ -49,7 +49,7 @@ export default function CommentManagement() {
       setComments((prev) =>
         prev.filter((comment) => comment.id !== selectedCommentId)
       );
-      setDeletionMessage("✅ Komentar berhasil dihapus.");
+      setDeletionMessage("Komentar berhasil dihapus.");
       setTimeout(() => {
         setShowLoadingOverlay(false);
         setDeletionMessage("");

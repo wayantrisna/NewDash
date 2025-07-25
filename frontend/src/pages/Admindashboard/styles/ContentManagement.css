@@ -80,6 +80,21 @@ img {
   color: white;
 }
 
+.delete-confirm-button {
+  background-color: #e53935;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.delete-confirm-button:hover {
+  background-color: #c62828;
+}
+
 /* Fullscreen overlay saat loading */
 .overlay {
   position: fixed;

@@ -18,6 +18,7 @@ export default function CommentManagement() {
 
   const fetchComments = async () => {
     setIsLoading(true);
+    setShowLoadingOverlay(true);
     try {
       const response = await axios.get(`${config.API_BASE_URL}/api/comments`);
       setComments(response.data);
@@ -25,6 +26,7 @@ export default function CommentManagement() {
       console.error("Gagal mengambil komentar:", error);
     } finally {
       setIsLoading(false);
+      setShowLoadingOverlay(false);
     }
   };
 
@@ -51,7 +53,7 @@ export default function CommentManagement() {
       setTimeout(() => {
         setShowLoadingOverlay(false);
         setDeletionMessage("");
-      }, 2000); // Overlay ditampilkan selama 2 detik
+      }, 2000);
     } catch (error) {
       console.error("Gagal menghapus komentar:", error);
       alert("❌ Terjadi kesalahan saat menghapus komentar.");
@@ -76,6 +78,9 @@ export default function CommentManagement() {
           {deletionMessage && (
             <p className="success-message">{deletionMessage}</p>
           )}
+          {!deletionMessage && isLoading && (
+            <p className="loading-text">Memuat komentar...</p>
+          )}
         </div>
       )}
 
@@ -86,9 +91,7 @@ export default function CommentManagement() {
         </button>
       </div>
 
-      {isLoading ? (
-        <p style={{ color: "#555" }}>⏳ Memuat komentar...</p>
-      ) : (
+      {!isLoading && (
         <table className="comments-table">
           <thead>
             <tr>

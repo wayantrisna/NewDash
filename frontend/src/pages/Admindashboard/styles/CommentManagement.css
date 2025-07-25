@@ -131,14 +131,12 @@
   font-size: 0.95rem;
 }
 
-/* CommentManagement.css */
-
 .overlay {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background-color: rgba(255, 255, 255, 0.85);
   z-index: 9999;
   display: flex;
@@ -154,13 +152,19 @@
   border-top: 6px solid #3498db;
   border-radius: 50%;
   animation: spin 1s linear infinite;
-  margin-bottom: 15px;
 }
 
 .success-message {
   font-size: 18px;
   color: green;
   font-weight: bold;
+  margin-top: 10px;
+}
+
+.loading-text {
+  font-size: 16px;
+  color: #444;
+  margin-top: 10px;
 }
 
 @keyframes spin {

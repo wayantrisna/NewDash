@@ -75,11 +75,11 @@ export default function CommentManagement() {
       {showLoadingOverlay && (
         <div className="overlay">
           <div className="spinner"></div>
-          {deletionMessage && (
+          {deletionMessage ? (
             <p className="success-message">{deletionMessage}</p>
-          )}
-          {!deletionMessage && isLoading && (
-            <p className="loading-text">Memuat komentar...</p>
+          ) : (
+            !deletionMessage &&
+            isLoading && <p className="loading-text">Memuat komentar...</p>
           )}
         </div>
       )}

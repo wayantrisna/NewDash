@@ -123,7 +123,12 @@ function DashboardOverview() {
     },
   ];
 
-  if (loading) return <div>Loading...</div>;
+  if (loading)
+    return (
+      <div className="dashboard-loading-overlay">
+        <div className="dashboard-spinner"></div>
+      </div>
+    );
 
   return (
     <div className="admin-dashboard-container">

@@ -9,10 +9,6 @@ function CommentSection({ newsId }) {
   const [comments, setComments] = useState([]);
   const [visibleCount, setVisibleCount] = useState(5);
   const [commentText, setCommentText] = useState("");
-  const [replyInputs, setReplyInputs] = useState({});
-  const [showReplies, setShowReplies] = useState({});
-  const [likes, setLikes] = useState({});
-  const [repliesEnabled, setRepliesEnabled] = useState({});
 
   const navigate = useNavigate();
 
@@ -57,56 +53,6 @@ function CommentSection({ newsId }) {
     }
   };
 
-  const handleReplyToggle = (commentId) => {
-    setRepliesEnabled((prev) => ({
-      ...prev,
-      [commentId]: !prev[commentId],
-    }));
-  };
-
-  const handleReplyInputChange = (e, commentId) => {
-    const value = e.target.value;
-    setReplyInputs((prev) => ({ ...prev, [commentId]: value }));
-  };
-
-  const handleReplySubmit = async (parentId) => {
-    const replyText = replyInputs[parentId];
-
-    if (!userId) {
-      navigate("/login");
-      return;
-    }
-
-    if (!replyText?.trim()) return;
-
-    try {
-      await axios.post(`${config.API_BASE_URL}/api/comments/reply`, {
-        userId,
-        newsId,
-        parentId,
-        commentText: replyText,
-      });
-      setReplyInputs((prev) => ({ ...prev, [parentId]: "" }));
-      fetchComments();
-    } catch (err) {
-      console.error("Gagal membalas komentar:", err);
-    }
-  };
-
-  const toggleShowReplies = (commentId) => {
-    setShowReplies((prev) => ({
-      ...prev,
-      [commentId]: !prev[commentId],
-    }));
-  };
-
-  const toggleLike = (commentId) => {
-    setLikes((prev) => ({
-      ...prev,
-      [commentId]: !prev[commentId],
-    }));
-  };
-
   const renderComments = (commentList, depth = 0) => {
     return commentList
       .slice(0, depth === 0 ? visibleCount : commentList.length)
@@ -127,50 +73,6 @@ function CommentSection({ newsId }) {
               <p className="comment-text">{comment.commentText}</p>
             </div>
           </div>
-
-          <div className="action-buttons no-gap">
-            <button
-              className="like-button"
-              onClick={() => toggleLike(comment.id)}
-            >
-              {likes[comment.id] ? "❤️" : "🔥 0"}
-            </button>
-            <button onClick={() => handleReplyToggle(comment.id)}>
-              {repliesEnabled[comment.id] ? "Batal Balas" : "💬 Balas"}
-            </button>
-          </div>
-
-          {repliesEnabled[comment.id] && (
-            <div className="reply-input">
-              <input
-                type="text"
-                placeholder="Tulis balasan..."
-                value={replyInputs[comment.id] || ""}
-                onChange={(e) => handleReplyInputChange(e, comment.id)}
-              />
-              <button onClick={() => handleReplySubmit(comment.id)}>
-                Kirim
-              </button>
-            </div>
-          )}
-
-          {comment.replies?.length > 0 && (
-            <>
-              <button
-                className="toggle-replies"
-                onClick={() => toggleShowReplies(comment.id)}
-              >
-                {showReplies[comment.id]
-                  ? "Sembunyikan Balasan"
-                  : "Lihat Balasan"}
-              </button>
-              {showReplies[comment.id] && (
-                <div className="replies">
-                  {renderComments(comment.replies, depth + 1)}
-                </div>
-              )}
-            </>
-          )}
         </div>
       ));
   };
